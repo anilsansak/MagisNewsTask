@@ -1,16 +1,23 @@
 package com.example.anil.magisnewstask;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,7 +29,6 @@ public class NewsFragment extends Fragment {
 
     private final String TAG = NewsFragment.class.getSimpleName();
     RecyclerView recyclerView;
-    private ApiClient apiClient;
 
     public NewsFragment() {
 
@@ -40,12 +46,14 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_news, container, false);
-        recyclerView = getActivity().findViewById(R.id.recycler_view_news);
+        recyclerView = view.findViewById(R.id.recycler_view_news);
         // Inflate the layout for this fragment
+
 
         getNewsList();
         return view;
     }
+
 
     private void getNewsList() {
         Api apiService = ApiClient.getClient().create(Api.class);
@@ -58,8 +66,14 @@ public class NewsFragment extends Fragment {
 
 
                 if (response.body() != null){
-                   //List<NewsList> newsLists =response.body().getNewsResponse().getNewsList();
-                   // recyclerView.setAdapter(new NewsAdapter(newsLists, getContext(), R.layout.item_list_news));
+                   ArrayList<NewsList> newsLists = (ArrayList<NewsList>) response.body().getNewsResponse().getNewsList();
+
+                   NewsAdapter adapter = new NewsAdapter(newsLists, getContext());
+                   RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                   recyclerView.setLayoutManager(layoutManager);
+                   recyclerView.setItemAnimator(new DefaultItemAnimator());
+                   recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+                   recyclerView.setAdapter(adapter);
                 }
 
 

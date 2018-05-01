@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "89879208108",
+    "firebase_url": "https://magisnewstask.firebaseio.com",
+    "project_id": "magisnewstask",
+    "storage_bucket": "magisnewstask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89879208108:android:52672acd0ac987bd",
+        "android_client_info": {
+          "package_name": "com.example.anil.magisnewstask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89879208108-v0lqbq2pboc6hrr178ld1k9gqkdavfgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb5fzINVnm8kaCVsePhOKf3oiel6UwgZI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

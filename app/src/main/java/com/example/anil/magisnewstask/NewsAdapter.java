@@ -14,40 +14,14 @@ import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
-    private List<NewsList> newsList;
+    private ArrayList<NewsList> newsList;
     private Context context;
-    private int rowLayout;
 
-
-    public NewsAdapter(List<NewsList> newsList, Context context, int rowLayout) {
-        this.newsList = newsList;
-        this.context = context;
-        this.rowLayout = rowLayout;
-    }
-
-    @NonNull
-    @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(newsList.get(position).getImage()).into(holder.imageView);
-        holder.textTitle.setText(newsList.get(position).getTitle());
-        holder.textSubtext.setText(newsList.get(position).getSubTitle());
-        holder.textAuthor.setText(newsList.get(position).getWriter());
-    }
-
-    @Override
-    public int getItemCount() {
-        return newsList.size();
-    }
     class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearOuter;
         LinearLayout linearInner;
@@ -66,4 +40,33 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
             textAuthor = itemView.findViewById(R.id.text_author);
         }
     }
+
+
+    public NewsAdapter(ArrayList<NewsList> newsList, Context context) {
+        this.newsList = newsList;
+        this.context = context;
+
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_news, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Glide.with(context).load(newsList.get(position).getImage()).into(holder.imageView);
+        holder.textTitle.setText(newsList.get(position).getTitle());
+        holder.textSubtext.setText(newsList.get(position).getSubTitle());
+        holder.textAuthor.setText(newsList.get(position).getWriter());
+    }
+
+    @Override
+    public int getItemCount() {
+        return newsList.size();
+    }
+
+
 }
