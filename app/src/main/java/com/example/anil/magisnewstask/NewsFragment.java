@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -91,6 +92,13 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickListe
 
     @Override
     public void onNewsClick(NewsList newsList) {
-        Toast.makeText(getContext(), newsList.getId().toString(), Toast.LENGTH_SHORT).show();
+        Fragment fragment = new DetailsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", newsList.getId());
+        fragment.setArguments(bundle);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
