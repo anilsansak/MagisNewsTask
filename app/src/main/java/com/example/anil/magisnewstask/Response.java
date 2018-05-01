@@ -11,17 +11,9 @@ public class Response {
     @Expose
     private List<NewsList> newsList = null;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public Response() {
     }
 
-    /**
-     * 
-     * @param newsList
-     */
     public Response(List<NewsList> newsList) {
         super();
         this.newsList = newsList;
