@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +70,29 @@ public class DetailsFragment extends Fragment {
         if(bundle != null){
             int id = bundle.getInt("id");
             getNewsDetails(id);
+
         }
 
         return view;
+    }
+
+    private void readNews(int id) {
+        Api apiService = ApiClient.getClient().create(Api.class);
+
+        Call<ReadResponse> call = apiService.readNews(id);
+        call.enqueue(new Callback<ReadResponse>() {
+            @Override
+            public void onResponse(Call<ReadResponse> call, Response<ReadResponse> response) {
+                Log.d("Post response", "test");
+                Log.d("Post response", response.body().getError().toString());
+                Log.d("Post response", response.body().getResponse().toString());
+            }
+
+            @Override
+            public void onFailure(Call<ReadResponse> call, Throwable t) {
+                Log.e("Post failure", "fail");
+            }
+        });
     }
 
     private void getNewsDetails(final int id) {
@@ -85,7 +106,9 @@ public class DetailsFragment extends Fragment {
                textDetails.setText(response.body().getResponse().getNews().getTitle());
                textSubtext.setText(response.body().getResponse().getNews().getSubTitle());
                textDetails.setText(response.body().getResponse().getNews().getDescription());
-                Glide.with(getContext()).load(response.body().getResponse().getNews().getImage()).into(imageView);
+               Glide.with(getContext()).load(response.body().getResponse().getNews().getImage()).into(imageView);
+               readNews(id);
+
             }
 
             @Override
