@@ -11,13 +11,13 @@ public class News {
     private Boolean error;
     @SerializedName("response")
     @Expose
-    private Response response;
+    private NewsResponse newsResponse;
 
 
-    public News(Boolean error, Response response) {
+    public News(Boolean error, NewsResponse newsResponse) {
         super();
         this.error = error;
-        this.response = response;
+        this.newsResponse = newsResponse;
     }
 
     public Boolean getError() {
@@ -28,12 +28,12 @@ public class News {
         this.error = error;
     }
 
-    public Response getResponse() {
-        return response;
+    public NewsResponse getNewsResponse() {
+        return newsResponse;
     }
 
-    public void setResponse(Response response) {
-        this.response = response;
+    public void setNewsResponse(NewsResponse newsResponse) {
+        this.newsResponse = newsResponse;
     }
 
 }

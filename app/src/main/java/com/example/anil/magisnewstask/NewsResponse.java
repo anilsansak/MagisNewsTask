@@ -5,16 +5,16 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Response {
+public class NewsResponse {
 
     @SerializedName("newsList")
     @Expose
     private List<NewsList> newsList = null;
 
-    public Response() {
+    public NewsResponse() {
     }
 
-    public Response(List<NewsList> newsList) {
+    public NewsResponse(List<NewsList> newsList) {
         super();
         this.newsList = newsList;
     }

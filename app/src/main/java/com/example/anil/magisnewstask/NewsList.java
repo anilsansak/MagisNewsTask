@@ -22,17 +22,6 @@ public class NewsList {
     @Expose
     private String writer;
 
-    public NewsList() {
-    }
-
-    /**
-     * 
-     * @param id
-     * @param subTitle
-     * @param title
-     * @param image
-     * @param writer
-     */
     public NewsList(Integer id, String title, String subTitle, String image, String writer) {
         super();
         this.id = id;
