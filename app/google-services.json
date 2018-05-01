@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "89879208108-rfkgdtko1pctiesq0impopbljllbdfmc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anil.magisnewstask",
+            "certificate_hash": "fb35846a36bba112cd0d0d5a426e06624055f2ef"
+          }
+        },
+        {
           "client_id": "89879208108-v0lqbq2pboc6hrr178ld1k9gqkdavfgi.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89879208108-v0lqbq2pboc6hrr178ld1k9gqkdavfgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
