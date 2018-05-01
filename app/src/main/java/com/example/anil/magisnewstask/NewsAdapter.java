@@ -19,8 +19,14 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
+    public interface NewsClickListener {
+        void onNewsClick(NewsList newsList);
+    }
+
     private ArrayList<NewsList> newsList;
     private Context context;
+    private  NewsClickListener listener;
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearOuter;
@@ -41,11 +47,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         }
     }
 
-
-    public NewsAdapter(ArrayList<NewsList> newsList, Context context) {
+    public NewsAdapter(ArrayList<NewsList> newsList, Context context, NewsClickListener listener) {
         this.newsList = newsList;
         this.context = context;
-
+        this.listener = listener;
     }
 
     @NonNull
@@ -56,11 +61,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Glide.with(context).load(newsList.get(position).getImage()).into(holder.imageView);
         holder.textTitle.setText(newsList.get(position).getTitle());
         holder.textSubtext.setText(newsList.get(position).getSubTitle());
         holder.textAuthor.setText(newsList.get(position).getWriter());
+        holder.linearOuter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onNewsClick(newsList.get(position));
+            }
+        });
     }
 
     @Override

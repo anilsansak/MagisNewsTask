@@ -15,6 +15,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class NewsFragment extends Fragment {
+public class NewsFragment extends Fragment implements NewsAdapter.NewsClickListener {
 
     private final String TAG = NewsFragment.class.getSimpleName();
     RecyclerView recyclerView;
@@ -68,7 +69,7 @@ public class NewsFragment extends Fragment {
                 if (response.body() != null){
                    ArrayList<NewsList> newsLists = (ArrayList<NewsList>) response.body().getNewsResponse().getNewsList();
 
-                   NewsAdapter adapter = new NewsAdapter(newsLists, getContext());
+                   NewsAdapter adapter = new NewsAdapter(newsLists, getContext(), NewsFragment.this);
                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                    recyclerView.setLayoutManager(layoutManager);
                    recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -88,4 +89,8 @@ public class NewsFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onNewsClick(NewsList newsList) {
+        Toast.makeText(getContext(), newsList.getId().toString(), Toast.LENGTH_SHORT).show();
+    }
 }
