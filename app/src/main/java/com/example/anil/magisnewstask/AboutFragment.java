@@ -9,9 +9,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 
 public class AboutFragment extends Fragment {
+
+    WebView webView;
 
     public AboutFragment() {
         // Required empty public constructor
@@ -28,6 +31,10 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
+
+        webView = view.findViewById(R.id.web_view);
+
+        webView.loadUrl("http://www.magis.com.tr");
         // Inflate the layout for this fragment
         return view;
     }
